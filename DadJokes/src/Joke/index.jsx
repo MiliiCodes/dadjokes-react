@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import './style.css';
 
-export const Joke = ({
-  userAvatar,
-  userName,
-  text,
-  likes,
-  dislikes,
-  onLike,
-  onDislike,
-}) => {
+export const Joke = ({ userAvatar, userName, text, likes, dislikes }) => {
+  const [upLikes, setUpLikes] = useState(likes);
+  const [downLikes, setDownLikes] = useState(dislikes);
+
   return (
     <div className="joke">
       <div className="joke__body">
@@ -25,21 +20,21 @@ export const Joke = ({
           id="btn-up"
           className="btn-like btn-like--up"
           onClick={() => {
-            onLike();
+            setUpLikes(upLikes + 1);
           }}
         ></button>
         <span id="likes-up" className="likes-count likes-count--up">
-          {likes}
+          {upLikes}
         </span>
         <button
           id="btn-down"
           className="btn-like btn-like--down"
           onClick={() => {
-            onDislike();
+            setDownLikes(downLikes + 1);
           }}
         ></button>
         <span id="likes-down" className="likes-count likes-count--down">
-          {dislikes}
+          {downLikes}
         </span>
       </div>
     </div>

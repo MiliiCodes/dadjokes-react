@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Joke } from './Joke';
 import './style.css';
@@ -88,16 +88,6 @@ const jokes = [
 ];
 
 const App = () => {
-  const [upLikes, setUpLikes] = useState(0);
-  const [downLikes, setDownLikes] = useState(0);
-
-  const handleOnLike = () => {
-    setUpLikes(upLikes + 1);
-  };
-  const handleOnDislike = () => {
-    setDownLikes(downLikes + 1);
-  };
-
   return (
     <div className="container">
       {jokes.map((item) => (
@@ -105,11 +95,9 @@ const App = () => {
           userAvatar={item.avatar}
           userName={item.name}
           text={item.text}
-          likes={item.likes + upLikes}
-          dislikes={item.dislikes + downLikes}
+          likes={item.likes}
+          dislikes={item.dislikes}
           key={item.name}
-          onLike={handleOnLike}
-          onDislike={handleOnDislike}
         />
       ))}
     </div>
